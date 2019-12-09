@@ -6,7 +6,7 @@ let markers = {
     "target": {
         width: 2284,
         height: 1377,
-        dpi: 215,
+        dpi: 110,
         url: "resources/target/target",
     },
 };
@@ -58,9 +58,9 @@ function start(container, marker, video, input_width, input_height, canvas_draw,
 
     sphere.material.shading = THREE.FlatShading;
     sphere.position.z = 0;
-    sphere.position.x = 10;
-    sphere.position.y = 10;
-    sphere.scale.set(100, 100, 100);
+    sphere.position.x = 100;
+    sphere.position.y = 100;
+    sphere.scale.set(200, 200, 200);
 
     root.matrixAutoUpdate = false;
     root.add(sphere);
