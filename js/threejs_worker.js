@@ -4,8 +4,8 @@ function isMobile() {
 
 let markers = {
     "target": {
-        width: 180,
-        height: 180,
+        width: 2284,
+        height: 1377,
         dpi: 215,
         url: "resources/target/target",
     },
