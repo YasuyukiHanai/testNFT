@@ -58,7 +58,7 @@ function start(container, marker, video, input_width, input_height, canvas_draw,
 
     sphere.material.shading = THREE.FlatShading;
     sphere.position.z = 0;
-    sphere.position.x = 100;
+    sphere.position.x = 150;
     sphere.position.y = 100;
     sphere.scale.set(200, 200, 200);
 
