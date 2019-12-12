@@ -67,11 +67,11 @@ function start(container, marker, video, input_width, input_height, canvas_draw,
     let sphere = new THREE.GLTFLoader();
     sphere.load( 'resources/models/Duck/glTF/Duck.gltf', function ( gltf ) {
         selectedModel = gltf.scene;
-        selectedModel.scale.set(150,150,150);
+        selectedModel.scale.set(110,110,110);
         selectedModel.position.z = 0;
-        selectedModel.position.x = 60;
-        selectedModel.position.y = 30;
-        selectedModel.rotation.x = 90;
+        selectedModel.position.x = 100;
+        selectedModel.position.y = 50;
+        selectedModel.rotation.x = 92;
         selectedModel.rotation.y = 55;
         root.add(selectedModel);
     }, undefined, function ( error ) {
