@@ -70,8 +70,8 @@ function start(container, marker, video, input_width, input_height, canvas_draw,
         selectedModel.scale.set(110,110,110);
         selectedModel.position.z = 0;
         selectedModel.position.x = 100;
-        selectedModel.position.y = 50;
-        selectedModel.rotation.x = 92;
+        selectedModel.position.y = 60;
+        selectedModel.rotation.x = 95;
         selectedModel.rotation.y = 55;
         root.add(selectedModel);
     }, undefined, function ( error ) {
