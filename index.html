@@ -9,12 +9,18 @@
             padding: 0;
             width: 100%;
             text-align: center;
-            overflow-x: hidden;
+            overflow: hidden;
+        }
+        #wrap {
+            position: relative;
+            overflow: hidden;
+            height: 100%;
         }
     </style>
 </head>
 
 <body>
+<div id="wrap">
     <div class="grey-cover">
         <div class="loading">
             <img src="logo.gif"/>
@@ -25,10 +31,12 @@
         <video loop autoplay muted playsinline id="video"></video>
         <canvas style="position: absolute; left:0; top:0" id="canvas_draw"></canvas>
     </div>
+</div>
 
     <link rel="stylesheet" type="text/css" href="style.css">
     <script src="js/stats.min.js"></script>
     <script src="js/three.min.js"></script>
+    <script src="https://rawcdn.githack.com/mrdoob/three.js/r100/examples/js/loaders/GLTFLoader.js"></script>
     <script src="js/threejs_worker.js"></script>
 
     <script>

@@ -48,32 +48,51 @@ function start(container, marker, video, input_width, input_height, canvas_draw,
 
     scene.add(camera);
 
-    let sphere = new THREE.Mesh(
-        new THREE.SphereGeometry(0.5, 8, 8),
-        new THREE.MeshNormalMaterial()
-    );
+    // let sphere = new THREE.Mesh(
+    //     new THREE.SphereGeometry(0.5, 8, 8),
+    //     new THREE.MeshNormalMaterial()
+    // );
 
     let root = new THREE.Object3D();
     scene.add(root);
 
-    sphere.material.shading = THREE.FlatShading;
-    sphere.position.z = 0;
-    sphere.position.x = 100;
-    sphere.position.y = 100;
-    sphere.scale.set(200, 200, 200);
+    // sphere.material.shading = THREE.FlatShading;
+    // sphere.position.z = 0;
+    // sphere.position.x = 10;
+    // sphere.position.y = 10;
+    // sphere.scale.set(100, 100, 100);
 
     root.matrixAutoUpdate = false;
+
+    let sphere = new THREE.GLTFLoader();
+    sphere.load( 'resources/models/Duck/glTF/Duck.gltf', function ( gltf ) {
+        selectedModel = gltf.scene;
+        selectedModel.scale.set(30,30,30);
+        selectedModel.position.z = 0;
+        selectedModel.position.x = 20;
+        selectedModel.position.y = 30;
+        selectedModel.rotation.x = 95;
+        selectedModel.rotation.y = 55;
+        root.add(selectedModel);
+    }, undefined, function ( error ) {
+        console.error( error );
+    } );
+
     root.add(sphere);
+
+    const light = new THREE.AmbientLight(0xFFFFFF, 1.0);
+    root.add(light);
 
     let load = () => {
         vw = input_width;
         vh = input_height;
 
-        pscale = 320 / Math.max(vw, vh / 3 * 4);
+        pscale = 640 / Math.max(vw, vh / 3 * 4);
         sscale = isMobile() ? window.outerWidth / input_width : 1;
 
         sw = vw * sscale;
-        sh = vh * sscale;
+        // sh = vh * sscale;
+        sh = window.innerHeight;
         video.style.width = sw + "px";
         video.style.height = sh + "px";
         container.style.width = sw + "px";
@@ -94,6 +113,7 @@ function start(container, marker, video, input_width, input_height, canvas_draw,
         canvas_process.height = ph;
 
         renderer.setSize(sw, sh);
+        renderer.gammaOutput = true;
 
         worker = new Worker('js/worker.js');
 
@@ -152,7 +172,7 @@ function start(container, marker, video, input_width, input_height, canvas_draw,
         lasttime = now;
 
         if (!lastmsg) {
-            sphere.visible = false;
+            root.visible = false;
         } else {
             let proj = JSON.parse(lastmsg.proj);
             let world = JSON.parse(lastmsg.matrixGL_RH);
@@ -164,7 +184,7 @@ function start(container, marker, video, input_width, input_height, canvas_draw,
             let w = width / dpi * 2.54 * 10;
             let h = height / dpi * 2.54 * 10;
 
-            sphere.visible = true;
+            root.visible = true;
             setMatrix(root.matrix, world);
         }
         renderer.render(scene, camera);
